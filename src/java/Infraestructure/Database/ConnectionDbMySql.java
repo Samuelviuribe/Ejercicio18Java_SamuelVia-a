@@ -15,7 +15,7 @@ public class ConnectionDbMySql {
     
     //metodo para devolver la base de datos
     
-    public static Connection getCOnnection() throws SQLException{
+    public static Connection getConnection() throws SQLException{
     Connection connection = null;
     try{
     Class.forName(DRIVER);
