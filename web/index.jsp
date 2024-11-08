@@ -20,7 +20,7 @@
         <% if (loggedInUser == null) { %> 
             <%-- Si no ha iniciado sesión, mostramos la opción de login --%> 
             <h3>No has iniciado sesión</h3> 
-            <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=login">Iniciar Sesión</a> <% } 
+            <a href="<%= request.getContextPath() %>/Views/Forms/Users/login.jsp?action=login">Iniciar Sesión</a> <% } 
                 else { %> 
                 <%-- Si ha iniciado sesión, mostramos el menú de gestión de usuarios --%> 
                 <h3>Hola, <%= loggedInUser.getName() %> (Has iniciado sesión)</h3>
