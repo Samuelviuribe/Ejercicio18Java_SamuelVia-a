@@ -24,6 +24,7 @@
             
             <input type="submit" value="Iniciar Sesión"> 
         </form> 
-            <br> <a href="<%= request.getContextPath() %>/index.jsp">Volver a la página de inicio</a> 
+            <br> <a href="<%= request.getContextPath() %>/index.jsp">Volver a la página de inicio</a>
+             
     </body> 
     </html>
