@@ -3,7 +3,7 @@
     Created on : 7/11/2024, 4:40:43 p. m.
     Author     : HP
 --%>
-
+<%@page import="Domain.Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,10 +50,10 @@
         <!-- El valor cambiará dinámicamente -->
         <input type="hidden" id="actionInput" name="action" value="search">
         
-        <label for="searchCode">Código del usuario:</label><br>
-        <input type="text" id="code" name="code" required value="
+        <label for="searchCode">Cedula del usuario:</label><br>
+        <input type="text" id="cedula" name="cedula" required value="
         <%= session.getAttribute("searchedUser") != null ?
-            ((User)session.getAttribute("searchedUser")).getCode()
+            ((User)session.getAttribute("searchedUser")).getCedula()
             : "" %>"><br><br>
         
         <%-- Detalles del usuario (después de la búsqueda) --%>
@@ -62,12 +62,12 @@
         %>
         <% if (sessionUser != null) { %>
             <h3>Detalles del Usuario</h3>
-            <p><strong>Código:</strong> <%= sessionUser.getCode() %></p>
-            <p><strong>Nombre:</strong> <%= sessionUser.getName() %></p>
+            <p><strong>Cedula:</strong> <%= sessionUser.getCedula() %></p>
+            <p><strong>Nombre:</strong> <%= sessionUser.getNombre() %></p>
             <p><strong>Email:</strong> <%= sessionUser.getEmail() %></p>
 
             <label for="name">Nuevo Nombre:</label><br>
-            <input type="text" id="name" name="name" value="<%= sessionUser.getName() %>" required><br><br>
+            <input type="text" id="nombre" name="nombre" value="<%= sessionUser.getNombre() %>" required><br><br>
             
             <label for="email">Nuevo Email:</label><br>
             <input type="email" id="email" name="email" value="<%= sessionUser.getEmail() %>" required><br><br>
@@ -80,10 +80,10 @@
         
         <%-- Botones en la misma fila --%>
         <button type="submit" onclick="setActionAndSubmit('search')" id="searchBtn">Buscar Usuario</button>
-        <button type="button" id="editBtn" disabled onclick="setActionAndSubmit('update', '¿Seguro que deseas editar este usuario?')">
+        <button type="button" id="editBtn" disabled onclick="setActionAndSubmit('update', '¿Seguro que quieres editar este usuario?')">
             Editar Usuario
         </button>
-        <button type="button" id="deleteBtn" disabled onclick="setActionAndSubmit('delete', '¿Seguro que deseas eliminar este usuario?')">
+        <button type="button" id="deleteBtn" disabled onclick="setActionAndSubmit('delete', '¿Seguro que quieres eliminar este usuario?')">
             Eliminar Usuario
         </button>
     </form>

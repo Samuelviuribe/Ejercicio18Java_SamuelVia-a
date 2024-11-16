@@ -12,7 +12,7 @@
         <title>Página de Inicio</title>
     </head>
     <body>
-        <h1>Bienvenido a la Gestión de Usuarios</h1>
+        <h1>Bienvenido a la Gestión de Usuarios </h1>
         
         <%-- Verificamos si el usuario ha iniciado sesión --%>
         <% User loggedInUser = (User) session.getAttribute("loggedInUser"); %>
@@ -23,7 +23,7 @@
             <a href="<%= request.getContextPath() %>/Views/Forms/Users/login.jsp?action=login">Iniciar Sesión</a>
         <% } else { %>
             <%-- Si ha iniciado sesión, mostramos el menú de gestión de usuarios --%>
-            <h3>Hola, <%= loggedInUser.getName() %> (Has iniciado sesión)</h3>
+            <h3>Hola, <%= loggedInUser.getNombre() %> (Has iniciado sesión)</h3>
             <ul>
                 <li><a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=showCreateForm">Agregar Usuario</a></li>
                 <li><a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=showFindForm">Buscar Usuario</a></li>

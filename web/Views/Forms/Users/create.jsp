@@ -23,11 +23,17 @@
 
         <%-- Formulario para agregar usuario --%>
         <form action="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=create" method="post"> 
-            <label for="code">Código:</label><br>
-            <input type="text" id="code" name="code" required><br><br>
+            <label for="cedula">Cédula:</label><br>
+            <input type="text" id="cedula" name="cedula" required><br><br>
 
-            <label for="name">Nombre:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="apellidos">Apellidos:</label><br>
+            <input type="text" id="apellidos" name="apellidos" required><br><br>
+
+            <label for="username">Nombre de usuario:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
 
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" required><br><br>
@@ -35,8 +41,16 @@
             <label for="password">Contraseña:</label><br>
             <input type="password" id="password" name="password" required><br><br>
 
+            <label for="rol">Rol:</label><br>
+            <select id="rol" name="rol" required>
+                <option value="" disabled selected>Seleccione un rol</option>
+                <option value="profesor">profesor</option>
+                <option value="usuario">Usuario</option>
+            </select><br><br>
+
             <input type="submit" value="Agregar Usuario">
         </form>
+
         <a href="<%= request.getContextPath() %>/index.jsp">Menu Principal</a>
     </body>
 </html>

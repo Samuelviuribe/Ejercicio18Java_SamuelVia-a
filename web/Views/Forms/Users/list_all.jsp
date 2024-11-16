@@ -3,15 +3,80 @@
     Created on : 7/11/2024, 4:40:56 p. m.
     Author     : HP
 --%>
+<%@page import="java.util.List"%>
+<%@page import="Domain.Model.User"%>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Todos los Usuarios</h1>
+
+    <%-- Mensajes de error o éxito --%>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+        <p style="color:red;"><%= request.getAttribute("errorMessage") %></p>
+    <% } %>
+    <% if (request.getAttribute("successMessage") != null) { %>
+        <p style="color:green;"><%= request.getAttribute("successMessage") %></p>
+    <% } %>
+
+    <%-- Tabla para mostrar la lista de usuarios --%>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Fecha de Registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+            List<User> users = (List<User>) request.getAttribute("users");
+            if (users != null && !users.isEmpty()) {
+                for (User user : users) {
+            %>
+                <tr>
+                    <td><%= user.getCedula() %></td>
+                    <td><%= user.getNombre() %></td>
+                    <td><%= user.getApellidos() %></td>
+                    <td><%= user.getUsername() %></td>
+                    <td>
+                        <%-- Enlace mailto: para el cliente de correo --%>
+                        <a href="mailto:<%= user.getEmail() %>?subject= ¡Hola! Te escribe el departamento de donaciones de la entidad XXXXXX &body=Gracias por contribuir">
+                            <%= user.getEmail() %>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=search&code=<%= user.getCedula() %>">Editar</a> |
+                        <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=delete&code=<%= user.getCedula() %>"
+                           onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">Eliminar</a>
+                    </td>
+                </tr>
+            <% 
+                }
+            } else {
+            %>
+                <tr>
+                    <td colspan="10">No hay usuarios disponibles</td>
+                </tr>
+            <% 
+            }
+            %>
+        </tbody>
+    </table>
+
+    <br>
+    <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=create">Agregar Nuevo Usuario</a>
+
+</body>
 </html>
+

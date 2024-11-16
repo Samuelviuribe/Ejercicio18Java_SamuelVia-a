@@ -4,8 +4,6 @@ package Business.Services;
  *
  * @author HP
  */
- 
-
 import Domain.Model.User;
 import Business.Exceptions.UserNotFoundException;
 import Business.Exceptions.DuplicateUserException;
@@ -28,27 +26,27 @@ public class UserService {
     }
 
     // Método para agregar un nuevo usuario
-    public void createUser(String code, String name, String email, String password)
+    public void createUser(String cedula, String nombre, String apellidos, String username, String email, String password, String rol)
             throws DuplicateUserException, SQLException {
-        User user = new User(code, password, name, email);
+        User user = new User(cedula, password, nombre, apellidos, username, email, rol);
         userCrud.addUser(user);
     }
 
     // Método para actualizar un usuario
-    public void updateUser(String code, String name, String email, String password)
+    public void updateUser(String cedula, String nombre, String email, String password)
             throws UserNotFoundException, SQLException {
-        User user = new User(code, password, name, email);
+        User user = new User(cedula, password, nombre, email);
         userCrud.updateUser(user);
     }
 
     // Método para eliminar un usuario
-    public void deleteUser(String code) throws UserNotFoundException, SQLException {
-        userCrud.deleteUser(code);
+    public void deleteUser(String cedula) throws UserNotFoundException, SQLException {
+        userCrud.deleteUser(cedula);
     }
 
     // Método para obtener un usuario por código
-    public User getUserByCode(String code) throws UserNotFoundException, SQLException {
-        return userCrud.getUserByCode(code);
+    public User getUserByCedula(String cedula) throws UserNotFoundException, SQLException {
+        return userCrud.getUserByCedula(cedula);
     }
 
     // Método para autenticar un usuario (login)
@@ -68,4 +66,3 @@ public class UserService {
         return userCrud.searchUsers(searchTerm);
     }
 }
-
