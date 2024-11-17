@@ -12,7 +12,7 @@
         <title>Página de Inicio</title>
     </head>
     <body>
-        <h1>Bienvenido a la Gestión de Usuarios </h1>
+        <h1>Bienvenidos a la Gestión de Usuarios</h1>
         
         <%-- Verificamos si el usuario ha iniciado sesión --%>
         <% User loggedInUser = (User) session.getAttribute("loggedInUser"); %>

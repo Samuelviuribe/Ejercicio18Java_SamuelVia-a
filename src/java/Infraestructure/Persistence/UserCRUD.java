@@ -97,15 +97,15 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
     }
 
 // Método para eliminar un usuario
-    public void deleteUser(String code) throws SQLException, UserNotFoundException {
-        String query = "DELETE FROM estudiantes WHERE code=?";
+    public void deleteUser(String cedula) throws SQLException, UserNotFoundException {
+        String query = "DELETE FROM estudiantes WHERE cedula=?";
 
         try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
-            stmt.setString(1, code);
+            stmt.setString(1, cedula);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
-                throw new UserNotFoundException("El usuario con el código " + code + " no existe.");
+                throw new UserNotFoundException("El usuario con el código " + cedula + " no existe.");
             }
         } catch (SQLException e) {
             throw e; // Propagamos la excepción SQLException para que la maneje el servicio
