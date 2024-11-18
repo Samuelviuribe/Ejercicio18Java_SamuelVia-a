@@ -134,30 +134,53 @@ private void handleAuthenticate(HttpServletRequest request, HttpServletResponse 
         }
     }
 
-    private void handleUpdateUser(HttpServletRequest request, HttpServletResponse response, HttpSession session, UserService userService)
-            throws ServletException, IOException {
-        User searchedUser = (User) session.getAttribute("searchedUser");
-        if (searchedUser == null) {
-            request.setAttribute("errorMessage", "Primero debe buscar un usuario para editar.");
-            request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
-            return;
-        }
-        String cedula = searchedUser.getCedula();
-        String nombre = request.getParameter("nombre");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        try {
-            userService.updateUser(cedula, nombre, email, password);
-            request.setAttribute("successMessage", "Usuario actualizado exitosamente.");
-            request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
-        } catch (UserNotFoundException e) {
-            request.setAttribute("errorMessage", e.getMessage());
-            request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
-        } catch (SQLException e) {
-            request.setAttribute("errorMessage", "Error de base de datos.");
-            request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
-        }
+       private void handleUpdateUser(HttpServletRequest request, 
+                               HttpServletResponse response, 
+                               HttpSession session, 
+                               UserService userService) 
+        throws ServletException, IOException {
+
+    User searchedUser = (User) session.getAttribute("searchedUser");
+    
+    if (searchedUser == null) {
+        request.setAttribute("errorMessage", "Primero debe buscar un usuario para editar.");
+        request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
+        return;
     }
+
+    String cedula = searchedUser.getCedula();
+    String nombre = request.getParameter("nombre");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+
+    // Recuperar los nuevos campos de la solicitud
+    String apellidos = request.getParameter("apellidos");
+    String username = request.getParameter("username");
+    String rol = request.getParameter("rol");
+    String telefono = request.getParameter("telefono");
+    String estado = request.getParameter("estado");
+    String fecha_registro = request.getParameter("fecha_registro");
+
+    try {
+        // Llamar al servicio para actualizar el usuario con los nuevos campos
+        userService.updateUser(cedula, nombre, email, password, 
+                                apellidos, username, rol, telefono, 
+                                estado, fecha_registro);
+        
+        request.setAttribute("successMessage", "Usuario actualizado exitosamente.");
+        request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
+        
+    } catch (UserNotFoundException e) {
+        request.setAttribute("errorMessage", e.getMessage());
+        request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
+        
+    } catch (SQLException e) {
+        request.setAttribute("errorMessage", "Error de base de datos.");
+        request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
+    }
+}
+
+
 
     private void handleDeleteUser(HttpServletRequest request, HttpServletResponse response, HttpSession session, UserService userService)
             throws ServletException, IOException {

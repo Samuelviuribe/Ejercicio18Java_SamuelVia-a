@@ -33,9 +33,22 @@ public class UserService {
     }
 
     // Método para actualizar un usuario
-    public void updateUser(String cedula, String nombre, String email, String password)
-            throws UserNotFoundException, SQLException {
-        User user = new User(cedula, password, nombre, email);
+    public void updateUser(String cedula, String nombre, String email, String password, 
+                       String apellidos, String username, String rol, String telefono, 
+                       String estado, String fecha_registro)
+        throws UserNotFoundException, SQLException {
+       User user = new User(
+        cedula, 
+        password, 
+        nombre, 
+        apellidos, 
+        email, 
+        username, 
+        rol, 
+        telefono, 
+        estado, 
+        fecha_registro
+    );
         userCrud.updateUser(user);
     }
 

@@ -30,7 +30,13 @@ public class UserCRUD {
                                 rs.getString("cedula"),
                                 rs.getString("password"),
                                 rs.getString("nombre"),
-                                rs.getString("email")
+                                rs.getString("apellidos"),
+                                rs.getString("email"),
+                                rs.getString("username"),
+                                rs.getString("rol"),
+                                rs.getString("telefono"),
+                                rs.getString("estado"),
+                                rs.getString("fecha_registro")
                         )
                 );
             }
@@ -63,7 +69,7 @@ public class UserCRUD {
     public void addUser(User user) throws SQLException, DuplicateUserException {
         String query = "INSERT INTO estudiantes (cedula, Username, password, nombre, apellidos, rol, email, estado) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setInt(1, Integer.parseInt(user.getCedula())); // Cedula como entero
             stmt.setString(2, user.getUsername());             // Username
@@ -77,11 +83,12 @@ public class UserCRUD {
             stmt.executeUpdate();
         }
     }
-        // Método para actualizar un usuario
-public void updateUser(User user) throws SQLException, UserNotFoundException {
+    // Método para actualizar un usuario
+
+    public void updateUser(User user) throws SQLException, UserNotFoundException {
         String query = "UPDATE estudiantes SET password=?, nombre=?, email=? WHERE cedula=?";
 
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, user.getPassword());
             stmt.setString(2, user.getNombre());
             stmt.setString(3, user.getEmail());
@@ -100,7 +107,7 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
     public void deleteUser(String cedula) throws SQLException, UserNotFoundException {
         String query = "DELETE FROM estudiantes WHERE cedula=?";
 
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, cedula);
 
             int rowsAffected = stmt.executeUpdate();
@@ -117,12 +124,23 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
         String query = "SELECT * FROM estudiantes WHERE cedula=?";
         User user = null;
 
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, cedula);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                user = new User(rs.getString("cedula"), rs.getString("password"), rs.getString("nombre"), rs.getString("email"));
+                user = new User(
+                        rs.getString("cedula"),
+                        rs.getString("password"),
+                        rs.getString("nombre"),
+                        rs.getString("apellidos"),
+                        rs.getString("email"),
+                        rs.getString("username"),
+                        rs.getString("rol"),
+                        rs.getString("telefono"),
+                        rs.getString("estado"),
+                        rs.getString("fecha_registro")
+                );
             } else {
                 throw new UserNotFoundException("El usuario con la cedula " + cedula + " no existe.");
             }
@@ -151,7 +169,13 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
                         rs.getString("cedula"),
                         rs.getString("password"),
                         rs.getString("nombre"),
-                        rs.getString("email")
+                        rs.getString("apellidos"),
+                        rs.getString("email"),
+                        rs.getString("username"),
+                        rs.getString("rol"),
+                        rs.getString("telefono"),
+                        rs.getString("estado"),
+                        rs.getString("fecha_registro")
                 );
             } else {
                 String message = "Credenciales incorrectas. No se encontró el usuario.";
@@ -167,13 +191,24 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
     public User getUserByEmail(String email) throws SQLException, UserNotFoundException {
         User user = null;
         String query = "SELECT * FROM estudiantes WHERE email=?";
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                user = new User(rs.getString("cedula"), rs.getString("password"), rs.getString("nombre"), rs.getString("email"));
+                user = new User(
+                        rs.getString("cedula"),
+                        rs.getString("password"),
+                        rs.getString("nombre"),
+                        rs.getString("apellidos"),
+                        rs.getString("email"),
+                        rs.getString("username"),
+                        rs.getString("rol"),
+                        rs.getString("telefono"),
+                        rs.getString("estado"),
+                        rs.getString("fecha_registro")
+                );
             } else {
                 throw new UserNotFoundException("El usuario con el email " + email + " no existe.");
             }
@@ -185,7 +220,7 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
     public List<User> searchUsers(String searchTerm) {
         List<User> userList = new ArrayList<>();
         String query = "SELECT * FROM estudiantes WHERE nombre LIKE ? OR email LIKE ?";
-        try ( Connection con = ConnectionDbMySql.getConnection();  PreparedStatement stmt = con.prepareStatement(query)) {
+        try (Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)) {
 
             stmt.setString(1, "%" + searchTerm + "%");
             stmt.setString(2, "%" + searchTerm + "%");
@@ -197,7 +232,13 @@ public void updateUser(User user) throws SQLException, UserNotFoundException {
                                 rs.getString("cedula"),
                                 rs.getString("password"),
                                 rs.getString("nombre"),
-                                rs.getString("email")
+                                rs.getString("apellidos"),
+                                rs.getString("email"),
+                                rs.getString("username"),
+                                rs.getString("rol"),
+                                rs.getString("telefono"),
+                                rs.getString("estado"),
+                                rs.getString("fecha_registro")
                         )
                 );
             }

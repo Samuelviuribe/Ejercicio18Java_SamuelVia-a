@@ -36,6 +36,7 @@
                 <th>Estado</th>
                 <th>Fecha de Registro</th>
                 <th>Acciones</th>
+                <th>Donaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -50,16 +51,22 @@
                     <td><%= user.getApellidos() %></td>
                     <td><%= user.getUsername() %></td>
                     <td>
-                        <%-- Enlace mailto: para el cliente de correo --%>
-                        <a href="mailto:<%= user.getEmail() %>?subject= ¡Hola! Te escribe el departamento de donaciones de la entidad XXXXXX &body=Gracias por contribuir">
+                        <%-- Enlace mailto: para el cliente de correo interesante --%>
+                        <a href="mailto:<%= user.getEmail() %>?subject= ¡Hola! Te escribe el departamento de donaciones del colegio o universidad  XXXXXX &body=Gracias por contribuir">
                             <%= user.getEmail() %>
                         </a>
                     </td>
+                    
+                    <td><%= user.getTelefono() %></td>
+                    <td><%= user.getRol() %></td>
+                    <td><%= user.getEstado() %></td>
+                    <td><%= user.getFecha_registro() %></td>
                     <td>
                         <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=search&code=<%= user.getCedula() %>">Editar</a> |
                         <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=delete&code=<%= user.getCedula() %>"
                            onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">Eliminar</a>
                     </td>
+                    <td> Ver Donaciones</td>
                 </tr>
             <% 
                 }
@@ -75,7 +82,7 @@
     </table>
 
     <br>
-    <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=create">Agregar Nuevo Usuario</a>
+    <a href="<%= request.getContextPath() %>/Controllers/UserController.jsp?action=showCreateForm">Agregar Nuevo Usuario</a>
 
 </body>
 </html>
