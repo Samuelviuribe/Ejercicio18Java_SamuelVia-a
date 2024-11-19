@@ -6,30 +6,30 @@ package Domain.Model;
  */
 public class Donaciones {
     
-    private String id;
+    private int id;
     private String monto;
-    private String medoto;
+    private String metodo;
     private String numero_recibo;
     private String fecha_donacion;
-    private String usuario_id;
+    private int usuario_id;
 
 public Donaciones() {
 }
 
-public Donaciones(String id, String monto, String metodo, String numero_recibo, String fecha_donacion, String usuario_id ){
+public Donaciones(int id, String monto, String metodo, String numero_recibo, String fecha_donacion, int usuario_id ){
     this.id = id;
     this.monto=monto;
-    this.medoto= metodo;
+    this.metodo= metodo;
     this.numero_recibo = numero_recibo;
     this.fecha_donacion = fecha_donacion;
     this.usuario_id = usuario_id;
 }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,12 +41,12 @@ public Donaciones(String id, String monto, String metodo, String numero_recibo, 
         this.monto = monto;
     }
 
-    public String getMedoto() {
-        return medoto;
+    public String getMetodo() {
+        return metodo;
     }
 
-    public void setMedoto(String medoto) {
-        this.medoto = medoto;
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
     }
 
     public String getNumero_recibo() {
@@ -65,11 +65,11 @@ public Donaciones(String id, String monto, String metodo, String numero_recibo, 
         this.fecha_donacion = fecha_donacion;
     }
 
-    public String getUsuario_id() {
+    public int getUsuario_id() {
         return usuario_id;
     }
 
-    public void setUsuario_id(String usuario_id) {
+    public void setUsuario_id(int usuario_id) {
         this.usuario_id = usuario_id;
     }
 
