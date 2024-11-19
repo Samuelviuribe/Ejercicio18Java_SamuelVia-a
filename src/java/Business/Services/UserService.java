@@ -33,11 +33,12 @@ public class UserService {
     }
 
     // Método para actualizar un usuario
-    public void updateUser(String cedula, String nombre, String email, String password, 
+    public void updateUser(int id, String cedula, String nombre, String email, String password, 
                        String apellidos, String username, String rol, String telefono, 
                        String estado, String fecha_registro)
         throws UserNotFoundException, SQLException {
        User user = new User(
+        id,
         cedula, 
         password, 
         nombre, 

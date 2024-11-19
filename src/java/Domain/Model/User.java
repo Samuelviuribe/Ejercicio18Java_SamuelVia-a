@@ -5,7 +5,7 @@ package Domain.Model;
  * @author HP
  */
 public class User {
-
+    private int id;
     private String cedula;
     private String password;
     private String nombre;
@@ -22,18 +22,19 @@ public class User {
     }
 
      
-     public User(String cedula, String password, String nombre, String apellidos, String email, String username, String rol, String telefono, String estado, String fecha_registro) {
-        this.cedula = cedula;
-        this.password = password;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.username = username;
-        this.rol = rol;
-        this.telefono = telefono;
-        this.estado = estado;
-        this.fecha_registro = fecha_registro;
-    }
+public User(int id, String cedula, String password, String nombre, String apellidos, String email, String username, String rol, String telefono, String estado, String fecha_registro) {
+    this.id = id;
+    this.cedula = cedula;
+    this.password = password;
+    this.nombre = nombre;
+    this.apellidos = apellidos;
+    this.email = email;
+    this.username = username;
+    this.rol = rol;
+    this.telefono = telefono;
+    this.estado = estado;
+    this.fecha_registro = fecha_registro;
+}
 
     
     public User(String cedula, String password, String nombre, String email, String telefono, String estado, String fecha_registro) {
@@ -47,6 +48,13 @@ public class User {
     }
 
     // Getters y Setters
+   public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }  
     public String getCedula() {
         return cedula;
     }

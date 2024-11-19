@@ -27,6 +27,7 @@ public class UserCRUD {
             while (rs.next()) {
                 userList.add(
                         new User(
+                                 rs.getInt("id"),
                                 rs.getString("cedula"),
                                 rs.getString("password"),
                                 rs.getString("nombre"),
@@ -130,6 +131,7 @@ public class UserCRUD {
 
             if (rs.next()) {
                 user = new User(
+                        rs.getInt("id"),
                         rs.getString("cedula"),
                         rs.getString("password"),
                         rs.getString("nombre"),
@@ -166,6 +168,7 @@ public class UserCRUD {
 
             if (rs.next()) {
                 user = new User(
+                        rs.getInt("id"),
                         rs.getString("cedula"),
                         rs.getString("password"),
                         rs.getString("nombre"),
@@ -198,6 +201,7 @@ public class UserCRUD {
 
             if (rs.next()) {
                 user = new User(
+                        rs.getInt("id"),
                         rs.getString("cedula"),
                         rs.getString("password"),
                         rs.getString("nombre"),
@@ -229,6 +233,7 @@ public class UserCRUD {
             while (rs.next()) {
                 userList.add(
                         new User(
+                                rs.getInt("id"),
                                 rs.getString("cedula"),
                                 rs.getString("password"),
                                 rs.getString("nombre"),

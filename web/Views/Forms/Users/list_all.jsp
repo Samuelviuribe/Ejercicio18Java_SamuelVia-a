@@ -37,6 +37,7 @@
                     <th>Fecha de Registro</th>
                     <th>Acciones</th>
                     <th>Donaciones</th>
+                    <th>Id Estudiante</th> <!-- Aquí es donde añades la columna para el ID Estudiante -->
                 </tr>
             </thead>
             <tbody>
@@ -68,12 +69,11 @@
                     </td>
 
                     <td>
-                        <a href="<%= request.getContextPath() %>/Controllers/DonacionesControllers.jsp?action=searchByCedula&cedula=<%= user.getCedula() %>">Ver Donaciones</a>
-
+                        <a href="<%= request.getContextPath() %>/Controllers/DonacionesControllers.jsp?action=searchByUsuarioId&usuario_id=<%= user.getId() %>">Ver Donaciones</a>
                     </td>
 
-
-
+                    <!-- Aquí es donde añades el ID Estudiante -->
+                    <td><%= user.getId() %></td> <!-- Muestra el ID Estudiante -->
                 </tr>
                 <% 
                     }
@@ -93,4 +93,3 @@
 
     </body>
 </html>
-

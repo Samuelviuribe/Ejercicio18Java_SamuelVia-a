@@ -5,25 +5,31 @@ package Domain.Model;
  * @author HP
  */
 public class Donaciones {
-    
     private int id;
-    private String monto;
+    private float monto;
     private String metodo;
-    private String numero_recibo;
-    private String fecha_donacion;
-    private int usuario_id;
+    private int numeroRecibo;
+    private String fechaDonacion;
+    private String cedula;
+    private int usuarioId;
 
-public Donaciones() {
-}
 
-public Donaciones(int id, String monto, String metodo, String numero_recibo, String fecha_donacion, int usuario_id ){
-    this.id = id;
-    this.monto=monto;
-    this.metodo= metodo;
-    this.numero_recibo = numero_recibo;
-    this.fecha_donacion = fecha_donacion;
-    this.usuario_id = usuario_id;
-}
+    public Donaciones(int id, float monto, String metodo, int numeroRecibo, String fechaDonacion, String cedula) {
+        this.id = id;
+        this.monto = monto;
+        this.metodo = metodo;
+        this.numeroRecibo = numeroRecibo;
+        this.fechaDonacion = fechaDonacion;
+        this.cedula = cedula; // Inicializar cédula
+    }
+
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
     public int getId() {
         return id;
@@ -33,11 +39,11 @@ public Donaciones(int id, String monto, String metodo, String numero_recibo, Str
         this.id = id;
     }
 
-    public String getMonto() {
+    public float getMonto() {
         return monto;
     }
 
-    public void setMonto(String monto) {
+    public void setMonto(float monto) {
         this.monto = monto;
     }
 
@@ -49,28 +55,30 @@ public Donaciones(int id, String monto, String metodo, String numero_recibo, Str
         this.metodo = metodo;
     }
 
-    public String getNumero_recibo() {
-        return numero_recibo;
+    public int getNumeroRecibo() {
+        return numeroRecibo;
     }
 
-    public void setNumero_recibo(String numero_recibo) {
-        this.numero_recibo = numero_recibo;
+    public void setNumeroRecibo(int numeroRecibo) {
+        this.numeroRecibo = numeroRecibo;
     }
 
-    public String getFecha_donacion() {
-        return fecha_donacion;
+    public String getFechaDonacion() {
+        return fechaDonacion;
     }
 
-    public void setFecha_donacion(String fecha_donacion) {
-        this.fecha_donacion = fecha_donacion;
+    public void setFechaDonacion(String fechaDonacion) {
+        this.fechaDonacion = fechaDonacion;
     }
 
-    public int getUsuario_id() {
-        return usuario_id;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setUsuario_id(int usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
+ 
+     
 
 }

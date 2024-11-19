@@ -147,7 +147,7 @@ private void handleAuthenticate(HttpServletRequest request, HttpServletResponse 
         request.getRequestDispatcher("/Views/Forms/Users/find_edit_delete.jsp").forward(request, response);
         return;
     }
-
+    int id = searchedUser.getId();
     String cedula = searchedUser.getCedula();
     String nombre = request.getParameter("nombre");
     String email = request.getParameter("email");
@@ -163,7 +163,7 @@ private void handleAuthenticate(HttpServletRequest request, HttpServletResponse 
 
     try {
         // Llamar al servicio para actualizar el usuario con los nuevos campos
-        userService.updateUser(cedula, nombre, email, password, 
+        userService.updateUser(id, cedula, nombre, email, password, 
                                 apellidos, username, rol, telefono, 
                                 estado, fecha_registro);
         

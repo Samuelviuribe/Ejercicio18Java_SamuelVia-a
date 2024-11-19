@@ -3,24 +3,22 @@
     Created on : 18/11/2024, 9:25:43?p. m.
     Author     : HP
 --%>
-
 <%@ page import="java.util.List" %>
 <%@ page import="Domain.Model.Donaciones" %>
+<%@ page import="Infraestructure.Persistence.DonacionesCrud" %>
 
 <%
-    List<Donaciones> donaciones = (List<Donaciones>) request.getAttribute("donaciones");
-    if (donaciones != null && !donaciones.isEmpty()) {
-%>
+    String action = request.getParameter("action");
 
-<%
-    String cedula = request.getParameter("cedula");
-if (cedula == null || cedula.isEmpty()) {
-    // Aquí podrías agregar un mensaje de error si no se pasa la cédula
-    System.out.println("Cédula no recibida correctamente.");
-} else {
-    System.out.println("Cédula recibida: " + cedula); // Verifica si la cédula se recibe correctamente
-}
+    if ("searchByUsuarioId".equals(action)) {
+        String usuarioId = request.getParameter("usuario_id");
 
+        // Llama al método adecuado en tu DAO o servicio para obtener las donaciones
+        DonacionesCrud donacionesCrud = new DonacionesCrud();
+        List<Donaciones> donacionesList = donacionesCrud.getDonacionesByUsuarioId(usuarioId); // Cambiar el método para usar usuario_id
+
+        // Mostrar las donaciones directamente en la página
+        if (donacionesList != null && !donacionesList.isEmpty()) {
 %>
 
         <table>
@@ -34,19 +32,23 @@ if (cedula == null || cedula.isEmpty()) {
                 </tr>
             </thead>
             <tbody>
-                <% for (Donaciones donacion : donaciones) { %>
+                <% for (Donaciones donacion : donacionesList) { %>
                     <tr>
                         <td><%= donacion.getId() %></td>
                         <td><%= donacion.getMonto() %></td>
-                        <td><%= donacion.getMedoto() %></td>
-                        <td><%= donacion.getNumero_recibo() %></td>
-                        <td><%= donacion.getFecha_donacion() %></td>
+                        <td><%= donacion.getMetodo() %></td>
+                        <td><%= donacion.getNumeroRecibo() %></td>
+                        <td><%= donacion.getFechaDonacion() %></td>
                     </tr>
                 <% } %>
             </tbody>
         </table>
-<% } else { %>
-        <p>No se encontraron donaciones para este usuario.</p>
-<% } %>
 
+<%      } else { %>
+<%= request.getParameter("usuario_id") %>
+            <p>No se encontraron donaciones para este usuario.</p>
+<%      }
+    } else { %>
+        <p>Acción no válida.</p>
+<%  } %>
 
